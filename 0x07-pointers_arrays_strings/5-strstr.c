@@ -1,30 +1,30 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * _strspn - Get the length of a prefix substring
+ * _strstr - Locating a substring
  *
- * @s: The character to print
+ * @needle: Occurance to find
  *
- * @accept: Character
+ * @haystack: String to search
  *
- * Return: unsigned int
+ * Return: Pointer
  */
 
-unsigned int _strspn(char *s, char *accept)
+char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j;
-
-	for (i = 0; s[i] != '\0'; i++)
+	while (*haystack)
 	{
-		for (j = 0; accept[j] != s[i]; j++)
+		char *src = haystack;
+		char *sub = needle;
+
+		while (*haystack && *sub && *haystack == *sub)
 		{
-			if (accept[j] == '\0')
-				return (i);
+			haystack++;
+			sub++;
 		}
-
+		if (!*sub)
+			return (src);
+		haystack = src + 1;
 	}
-
-	return (i);
-
+	return (0);
 }
